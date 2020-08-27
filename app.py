@@ -59,7 +59,7 @@ class Artist(db.Model):
     city = db.Column(db.String(120))
     state = db.Column(db.String(120))
     phone = db.Column(db.String(120))
-    genres = db.Column(db.String(120))
+    genres = db.Column(ARRAY(db.String()))
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
 
@@ -70,6 +70,12 @@ class Artist(db.Model):
     shows = db.relationship('Show', backref='artist', lazy=True, passive_deletes=True)
 
 # TODO Implement Show and Artist models, and complete all model relationships and properties, as a database migration.
+class Show(db.Model):
+    __tablename__ = 'Show'
+    id = db.Column(db.Integer, primary_key=True)
+    venue_id = db.Column(db.Integer, db.ForeignKey(Venue.id, ondelete='CASCADE'), nullable=False)
+    artist_id = db.Column(db.Integer, db.ForeignKey(Artist.id, ondelete='CASCADE'), nullable=False)
+    start_time = db.Column(db.DateTime(), nullable=False)
 
 #----------------------------------------------------------------------------#
 # Filters.
