@@ -229,11 +229,11 @@ def create_venue_submission():
     db.session.add(venue)
     db.session.commit()
     # on successful db insert, flash success
-    flash('Venue ' + form.name.data + ' was successfully listed!')
+    flash(f'Venue {form.name.data} was successfully listed!')
   except:
     print(sys.exc_info())
       # TODO: on unsuccessful db insert, flash an error instead.
-    flash('An error occurred. Venue ' + form.name.data + ' could not be listed.')
+    flash(f'An error occurred. Venue {form.name.data} could not be listed.')
   finally:
     db.session.close()
   return render_template('pages/home.html')
@@ -271,9 +271,9 @@ def edit_venue_submission(venue_id):
   try:
     db.session.query(Venue).filter(Venue.id == venue_id).update(updated_venue)
     db.session.commit()
-    flash('Venue ' + form.name.data + ' was successfully updated!')
+    flash(f'Venue {form.name.data} was successfully updated!')
   except: 
-    flash('An error occurred. Venue ' + form.name.data + ' could not be updated')
+    flash(f'An error occurred. Venue {form.name.data} could not be updated')
   finally:
     db.session.close()
   return redirect(url_for('show_venue', venue_id=venue_id))
