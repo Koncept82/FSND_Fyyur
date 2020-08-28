@@ -271,9 +271,9 @@ def edit_venue_submission(venue_id):
   try:
     db.session.query(Venue).filter(Venue.id == venue_id).update(updated_venue)
     db.session.commit()
-    flash('Venue' + form.name.data + ' was successfully updated!')
+    flash('Venue ' + form.name.data + ' was successfully updated!')
   except: 
-    flash('An error occurred. Venue' + form.name.data + ' could not be updated')
+    flash('An error occurred. Venue ' + form.name.data + ' could not be updated')
   finally:
     db.session.close()
   return redirect(url_for('show_venue', venue_id=venue_id))
