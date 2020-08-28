@@ -85,5 +85,18 @@
 	</div>
 </section>
 
+<script>
+	const deleteBtn = document.querySelector('.delete-button');
+	deleteBtn.onclick = function (e) {
+		console.log('delete', deleteBtn.dataset.id);
+		fetch('/venues/' + deleteBtn.dataset.id, {
+			method: 'DELETE',
+		})
+			.then(response => {
+				window.location = "/";
+			})
+	}
+</script>
+
 {% endblock %}
 
